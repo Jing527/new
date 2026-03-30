@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>我的第一个网页</title>
-</head>
-<body>
-    <h1>你好，世界！</h1>
-    <p>这是我用 GitHub 创建的第一个网页。</p>
+<body style="background-color: #121212; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Courier New', monospace; overflow: hidden;">
+
+  <!-- 这是你的标题 -->
+  <h1 style="font-size: 5rem; color: #00ff00; text-shadow: 0 0 10px #00ff00; letter-spacing: 5px;">
+    <span id="text">你好，世界！</span>
+  </h1>
+
+  <script>
+    // 这是一个简单的打字机效果
+    const text = "你好，世界！";
+    const el = document.getElementById('text');
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        el.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(type, 150); // 每个字出现的时间间隔
+      }
+    }
+
+    // 页面加载完成后开始打字
+    document.addEventListener('DOMContentLoaded', type);
+  </script>
+
 </body>
-</html>
