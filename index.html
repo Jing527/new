@@ -3,125 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的简历 - 你的名字</title>
+    <title>我的3D简历 - 你的名字</title>
     <style>
         /* --- 全局设置 --- */
         body {
-            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-            background-color: #f9f9f9; /* 浅灰背景，保护眼睛 */
-            color: #333; /* 深灰文字，比纯黑更柔和 */
-            line-height: 1.6;
             margin: 0;
             padding: 0;
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 漂亮的渐变背景 */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* 隐藏可能的滚动条 */
         }
 
-        /* --- 页面容器 --- */
-        .container {
-            max-width: 800px; /* 页面最大宽度 */
-            margin: 40px auto; /* 上下外边距40px，左右自动（居中） */
-            background: #fff; /* 白色卡片 */
-            padding: 50px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.05); /* 轻微阴影，增加立体感 */
-            border-radius: 8px;
+        /* --- 简历卡片 --- */
+        .resume-card {
+            background: #fff;
+            width: 800px;
+            min-height: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
-        /* --- 个人简介区 --- */
-        .profile {
-            text-align: center;
-            border-bottom: 1px solid #eee; /* 底部细线分割 */
-            padding-bottom: 30px;
-            margin-bottom: 30px;
+        /* --- 3D Canvas 容器 --- */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 确保3D内容不影响页面交互 */
+            z-index: 0;
         }
-        .profile h1 {
-            font-size: 36px;
+
+        /* --- 简历内容 --- */
+        .content {
+            padding: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
             margin-bottom: 10px;
-            color: #2c3e50; /* 深蓝灰，稳重 */
-        }
-        .profile p {
-            color: #7f8c8d; /* 灰色描述文字 */
-            font-size: 16px;
-            font-weight: 300;
-        }
-
-        /* --- 标题样式 --- */
-        h2 {
-            font-size: 24px;
-            border-left: 5px solid #3498db; /* 左侧蓝色竖条，商务风经典元素 */
-            padding-left: 15px;
-            margin-bottom: 20px;
-            color: #2c3e50;
+            color: #2d3748;
+            text-align: center;
+            /* 让标题看起来像悬浮在3D元素之上 */
+            position: relative;
+            z-index: 10;
+            /* 添加一点阴影，让它更立体 */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* --- 列表样式 --- */
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a5568;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
         .item {
             margin-bottom: 15px;
         }
-        .item .title {
-            font-weight: bold;
-            font-size: 18px;
-            color: #333;
+
+        .item-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2d3748;
         }
-        .item .time {
-            color: #95a5a6;
-            font-size: 14px;
+
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: #718096;
             margin-bottom: 5px;
         }
-        .item .desc {
-            padding-left: 20px;
-            color: #555;
+
+        .item-desc {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
+    <!-- 3D Canvas 容器 -->
+    <div id="canvas-container"></div>
 
-    <div class="container">
-        <!-- 1. 个人简介 -->
-        <div class="profile">
-            <h1>张三</h1>
-            <p>资深全栈工程师 | 5年工作经验 | 期待加入贵公司</p>
-        </div>
+    <!-- 简历卡片 -->
+    <div class="resume-card">
+        <div class="content">
+            <!-- 标题 -->
+            <h1>张三的简历</h1>
 
-        <!-- 2. 工作经历 -->
-        <div class="section">
-            <h2>工作经历</h2>
-            <div class="item">
-                <div class="title">高级前端工程师 - 阿里巴巴</div>
-                <div class="time">2020年6月 - 至今</div>
-                <div class="desc">负责核心交易系统的前端架构，使用 React 和 TypeScript 开发，提升了页面加载速度 30%。</div>
+            <!-- 个人信息 -->
+            <div class="section">
+                <div class="section-title">个人信息</div>
+                <div class="item">
+                    <div class="item-desc"><strong>邮箱：</strong>zhangsan@example.com</div>
+                    <div class="item-desc"><strong>电话：</strong>138-xxxx-xxxx</div>
+                    <div class="item-desc"><strong>城市：</strong>湖北武汉</div>
+                </div>
             </div>
-            <div class="item">
-                <div class="title">前端开发工程师 - 腾讯</div>
-                <div class="time">2018年3月 - 2020年5月</div>
-                <div class="desc">参与微信小程序生态开发，独立完成多个内部工具组件库。</div>
-            </div>
-        </div>
 
-        <!-- 3. 教育背景 -->
-        <div class="section">
-            <h2>教育背景</h2>
-            <div class="item">
-                <div class="title">北京大学 - 计算机科学与技术 - 本科</div>
-                <div class="time">2014年9月 - 2018年6月</div>
-                <div class="desc">GPA: 3.8/4.0 | 专业排名前10%</div>
+            <!-- 工作经历 -->
+            <div class="section">
+                <div class="section-title">工作经历</div>
+                <div class="item">
+                    <div class="item-title">前端开发工程师</div>
+                    <div class="item-subtitle">某科技有限公司 · 2022.06 - 至今</div>
+                    <div class="item-desc">负责公司核心产品的前端开发与维护，使用 React 和 TypeScript 构建高性能 Web 应用。主导了多个重要功能模块的重构，提升了代码可维护性和页面性能。</div>
+                </div>
+                <div class="item">
+                    <div class="item-title">前端实习生</div>
+                    <div class="item-subtitle">某互联网公司 · 2021.03 - 2022.05</div>
+                    <div class="item-desc">参与公司内部管理系统的开发，使用 Vue.js 和 Element UI 实现了多个数据可视化面板，提升了运营效率。</div>
+                </div>
             </div>
-        </div>
 
-        <!-- 4. 技能 -->
-        <div class="section">
-            <h2>专业技能</h2>
-            <div class="item">
-                <div class="desc">
-                    - 精通 JavaScript (ES6+) 和 TypeScript<br>
-                    - 熟练掌握 React, Vue 等主流框架<br>
-                    - 熟悉 Node.js 后端开发<br>
-                    - 熟练使用 Git 进行版本控制
+            <!-- 教育背景 -->
+            <div class="section">
+                <div class="section-title">教育背景</div>
+                <div class="item">
+                    <div class="item-title">武汉大学</div>
+                    <div class="item-subtitle">计算机科学与技术 · 本科 · 2017.09 - 2021.06</div>
+                    <div class="item-desc">GPA: 3.8/4.0，连续三年获得校级奖学金，参与多项科研项目。</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 引入 Three.js 库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // --- 3D 场景设置 ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        // --- 创建3D文字 ---
+        function createTextGeometry(text, font, size, height, curveSegments) {
+            const loader = new THREE.FontLoader();
+            return new Promise((resolve) => {
+                loader.load(font, (font) => {
+                    const geometry = new THREE.TextGeometry(text, {
+                        font: font,
+                        size: size,
+                        height: height,
+                        curveSegments: curveSegments,
+                        bevelEnabled: true,
+                        bevelThickness: 0.1,
+                        bevelSize: 0.05,
+                        bevelOffset: 0,
+                        bevelSegments: 5
+                    });
+                    resolve(geometry);
+                });
+            });
+        }
+
+        // --- 材质和光照 ---
+        const material = new THREE.MeshStandardMaterial({ color: 0x667eea, metalness: 0.5, roughness: 0.3 });
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 5, 5).normalize();
+        scene.add(light);
+
+        // --- 加载字体并创建文字 ---
+        let textMesh = null;
+        const fontUrl = 'https://threejs.org/examples/fonts/helvetiker_bold.typeface.json';
+
+        createTextGeometry('Hello World', fontUrl, 1, 0.2, 12).then((geometry) => {
+            textMesh = new THREE.Mesh(geometry, material);
+            textMesh.position.set(-2, 0, 0);
+            scene.add(textMesh);
+        });
+
+        // --- 相机位置 ---
+        camera.position.z = 5;
+
+        // --- 动画循环 ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (textMesh) {
+                // 让文字缓慢旋转
+                textMesh.rotation.x += 0.005;
+                textMesh.rotation.y += 0.01;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // --- 响应窗口大小变化 ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
