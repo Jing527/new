@@ -1,26 +1,176 @@
-<body style="background-color: #121212; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Courier New', monospace; overflow: hidden;">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人简历</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- 这是你的标题 -->
-  <h1 style="font-size: 5rem; color: #00ff00; text-shadow: 0 0 10px #00ff00; letter-spacing: 5px;">
-    <span id="text">你好，世界！</span>
-  </h1>
+        body {
+            /* 使用深灰色代替纯黑，更有层次感 */
+            background-color: #0a0a0a;
+            /* 背景渐变，增加质感 */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            /* 字体设置，更现代 */
+            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-  <script>
-    // 这是一个简单的打字机效果
-    const text = "你好，世界！";
-    const el = document.getElementById('text');
-    let index = 0;
+        .container {
+            max-width: 800px;
+            text-align: center;
+            /* 添加一点模糊背景，像毛玻璃效果 */
+            backdrop-filter: blur(10px);
+            background: rgba(20, 20, 20, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 150, 0.2);
+        }
 
-    function type() {
-      if (index < text.length) {
-        el.innerHTML += text.charAt(index);
-        index++;
-        setTimeout(type, 150); // 每个字出现的时间间隔
-      }
-    }
+        /* 标题样式：霓虹灯效果 */
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            /* 霓虹灯发光动画 */
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
 
-    // 页面加载完成后开始打字
-    document.addEventListener('DOMContentLoaded', type);
-  </script>
+        /* 副标题样式 */
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #888;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
+        /* 简历内容样式 */
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ddd;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00ff9d; /* 左侧边框强调 */
+        }
+
+        /* 链接样式 */
+        a {
+            color: #00ff9d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ff9d;
+        }
+
+        /* 霓虹灯动画关键帧 */
+        @keyframes neon {
+            from {
+                color: #fff;
+                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00ff9d, 0 0 40px #00ff9d;
+            }
+            to {
+                color: #00ff9d;
+                text-shadow: 0 0 20px #00ff9d, 0 0 30px #00ff9d, 0 0 40px #00ff9d, 0 0 50px #00ff9d;
+            }
+        }
+
+        /* 打字机效果的容器 */
+        .typewriter {
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #00ff9d;
+            width: max-content;
+            animation: typing 4s steps(20), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff9d }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 你的名字 -->
+        <h1 class="typewriter">张三</h1>
+
+        <!-- 你的职位 -->
+        <h2 class="typewriter">Web 前端工程师 | UI 设计师</h2>
+
+        <div class="content">
+            <p>👋 <strong>关于我</strong></p>
+            <p>一名热爱编程与设计的前端开发者。擅长 HTML/CSS/JavaScript，致力于构建优雅、高效的用户界面。</p>
+
+            <p>🚀 <strong>技能亮点</strong></p>
+            <ul>
+                <li>精通 HTML5/CSS3，能实现各种复杂布局和动效。</li>
+                <li>熟练掌握 JavaScript (ES6+)，理解其核心原理。</li>
+                <li>熟悉 React/Vue 等主流框架，有实际项目开发经验。</li>
+                <li>具备良好的 UI/UX 设计感觉，能独立完成页面设计。</li>
+            </ul>
+
+            <p>💼 <strong>工作经历</strong></p>
+            <p><strong>某某科技有限公司</strong> - 前端开发工程师 (2022 - 至今)</p>
+            <p>负责公司核心产品的前端开发与维护，优化页面性能，提升用户体验。</p>
+
+            <p>📬 <strong>联系方式</strong></p>
+            <p>邮箱: <a href="mailto:zhangsan@email.com">zhangsan@email.com</a></p>
+            <p>GitHub: <a href="https://github.com/your-github-username" target="_blank">github.com/your-github-username</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 简单的打字机效果
+        const texts = ["张三", "Web 前端工程师 | UI 设计师"];
+        let index = 0;
+
+        function typeWriter(elementId, text) {
+            const el = document.getElementById(elementId);
+            let i = 0;
+            el.innerHTML = "";
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, 100);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 依次执行打字效果
+            typeWriter('name', texts[0]);
+            setTimeout(() => {
+                typeWriter('title', texts[1]);
+            }, texts[0].length * 100 + 500);
+        });
+    </script>
 </body>
+</html>
