@@ -3,174 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人简历</title>
+    <title>我的简历 - 你的名字</title>
     <style>
-        /* 全局样式重置 */
-        * {
+        /* --- 全局设置 --- */
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+            background-color: #f9f9f9; /* 浅灰背景，保护眼睛 */
+            color: #333; /* 深灰文字，比纯黑更柔和 */
+            line-height: 1.6;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        body {
-            /* 使用深灰色代替纯黑，更有层次感 */
-            background-color: #0a0a0a;
-            /* 背景渐变，增加质感 */
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            /* 字体设置，更现代 */
-            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
+        /* --- 页面容器 --- */
         .container {
-            max-width: 800px;
+            max-width: 800px; /* 页面最大宽度 */
+            margin: 40px auto; /* 上下外边距40px，左右自动（居中） */
+            background: #fff; /* 白色卡片 */
+            padding: 50px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.05); /* 轻微阴影，增加立体感 */
+            border-radius: 8px;
+        }
+
+        /* --- 个人简介区 --- */
+        .profile {
             text-align: center;
-            /* 添加一点模糊背景，像毛玻璃效果 */
-            backdrop-filter: blur(10px);
-            background: rgba(20, 20, 20, 0.6);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(0, 255, 150, 0.2);
-        }
-
-        /* 标题样式：霓虹灯效果 */
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-            /* 霓虹灯发光动画 */
-            animation: neon 1.5s ease-in-out infinite alternate;
-        }
-
-        /* 副标题样式 */
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #888;
+            border-bottom: 1px solid #eee; /* 底部细线分割 */
+            padding-bottom: 30px;
             margin-bottom: 30px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        }
+        .profile h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #2c3e50; /* 深蓝灰，稳重 */
+        }
+        .profile p {
+            color: #7f8c8d; /* 灰色描述文字 */
+            font-size: 16px;
+            font-weight: 300;
         }
 
-        /* 简历内容样式 */
-        .content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ddd;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #00ff9d; /* 左侧边框强调 */
+        /* --- 标题样式 --- */
+        h2 {
+            font-size: 24px;
+            border-left: 5px solid #3498db; /* 左侧蓝色竖条，商务风经典元素 */
+            padding-left: 15px;
+            margin-bottom: 20px;
+            color: #2c3e50;
         }
 
-        /* 链接样式 */
-        a {
-            color: #00ff9d;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        /* --- 列表样式 --- */
+        .section {
+            margin-bottom: 30px;
         }
-
-        a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #00ff9d;
+        .item {
+            margin-bottom: 15px;
         }
-
-        /* 霓虹灯动画关键帧 */
-        @keyframes neon {
-            from {
-                color: #fff;
-                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00ff9d, 0 0 40px #00ff9d;
-            }
-            to {
-                color: #00ff9d;
-                text-shadow: 0 0 20px #00ff9d, 0 0 30px #00ff9d, 0 0 40px #00ff9d, 0 0 50px #00ff9d;
-            }
+        .item .title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
         }
-
-        /* 打字机效果的容器 */
-        .typewriter {
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 4px solid #00ff9d;
-            width: max-content;
-            animation: typing 4s steps(20), blink-caret 0.75s step-end infinite;
+        .item .time {
+            color: #95a5a6;
+            font-size: 14px;
+            margin-bottom: 5px;
         }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #00ff9d }
+        .item .desc {
+            padding-left: 20px;
+            color: #555;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <!-- 你的名字 -->
-        <h1 class="typewriter">张三</h1>
+        <!-- 1. 个人简介 -->
+        <div class="profile">
+            <h1>张三</h1>
+            <p>资深全栈工程师 | 5年工作经验 | 期待加入贵公司</p>
+        </div>
 
-        <!-- 你的职位 -->
-        <h2 class="typewriter">Web 前端工程师 | UI 设计师</h2>
+        <!-- 2. 工作经历 -->
+        <div class="section">
+            <h2>工作经历</h2>
+            <div class="item">
+                <div class="title">高级前端工程师 - 阿里巴巴</div>
+                <div class="time">2020年6月 - 至今</div>
+                <div class="desc">负责核心交易系统的前端架构，使用 React 和 TypeScript 开发，提升了页面加载速度 30%。</div>
+            </div>
+            <div class="item">
+                <div class="title">前端开发工程师 - 腾讯</div>
+                <div class="time">2018年3月 - 2020年5月</div>
+                <div class="desc">参与微信小程序生态开发，独立完成多个内部工具组件库。</div>
+            </div>
+        </div>
 
-        <div class="content">
-            <p>👋 <strong>关于我</strong></p>
-            <p>一名热爱编程与设计的前端开发者。擅长 HTML/CSS/JavaScript，致力于构建优雅、高效的用户界面。</p>
+        <!-- 3. 教育背景 -->
+        <div class="section">
+            <h2>教育背景</h2>
+            <div class="item">
+                <div class="title">北京大学 - 计算机科学与技术 - 本科</div>
+                <div class="time">2014年9月 - 2018年6月</div>
+                <div class="desc">GPA: 3.8/4.0 | 专业排名前10%</div>
+            </div>
+        </div>
 
-            <p>🚀 <strong>技能亮点</strong></p>
-            <ul>
-                <li>精通 HTML5/CSS3，能实现各种复杂布局和动效。</li>
-                <li>熟练掌握 JavaScript (ES6+)，理解其核心原理。</li>
-                <li>熟悉 React/Vue 等主流框架，有实际项目开发经验。</li>
-                <li>具备良好的 UI/UX 设计感觉，能独立完成页面设计。</li>
-            </ul>
-
-            <p>💼 <strong>工作经历</strong></p>
-            <p><strong>某某科技有限公司</strong> - 前端开发工程师 (2022 - 至今)</p>
-            <p>负责公司核心产品的前端开发与维护，优化页面性能，提升用户体验。</p>
-
-            <p>📬 <strong>联系方式</strong></p>
-            <p>邮箱: <a href="mailto:zhangsan@email.com">zhangsan@email.com</a></p>
-            <p>GitHub: <a href="https://github.com/your-github-username" target="_blank">github.com/your-github-username</a></p>
+        <!-- 4. 技能 -->
+        <div class="section">
+            <h2>专业技能</h2>
+            <div class="item">
+                <div class="desc">
+                    - 精通 JavaScript (ES6+) 和 TypeScript<br>
+                    - 熟练掌握 React, Vue 等主流框架<br>
+                    - 熟悉 Node.js 后端开发<br>
+                    - 熟练使用 Git 进行版本控制
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        // 简单的打字机效果
-        const texts = ["张三", "Web 前端工程师 | UI 设计师"];
-        let index = 0;
-
-        function typeWriter(elementId, text) {
-            const el = document.getElementById(elementId);
-            let i = 0;
-            el.innerHTML = "";
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    el.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(timer);
-                }
-            }, 100);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // 依次执行打字效果
-            typeWriter('name', texts[0]);
-            setTimeout(() => {
-                typeWriter('title', texts[1]);
-            }, texts[0].length * 100 + 500);
-        });
-    </script>
 </body>
 </html>
